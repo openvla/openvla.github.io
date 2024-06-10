@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>OpenVLA: An Open-Source Vision-Language-Action Model</title>
+  <meta name="description" content="OpenVLA: An Open-Source Vision-Language-Action Model">
+  <meta name="keywords" content="OpenVLA">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="OpenVLA: An Open-Source Vision-Language-Action Model">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenVLA: An Open-Source Vision-Language-Action Model">
+  <meta property="og:image" content="https://openvla.github.io/static/images/teaser.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1939" />
+  <meta property="og:image:height" content="772" />
+  <meta property="og:url" content="https://openvla.github.io/" />
+  <meta property="og:description" content="OpenVLA: An Open-Source Vision-Language-Action Model" />
+  <meta name="twitter:title" content="OpenVLA: An Open-Source Vision-Language-Action Model" />
+  <meta name="twitter:description" content="OpenVLA: An Open-Source Vision-Language-Action Model" />
+  <meta name="twitter:image" content="https://openvla.github.io/static/images/teaser.png" />
+  
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/icon.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  
+</head>
+
+<body>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">OpenVLA:<br><span style="font-size:2.4rem;">An Open-Source Vision-Language-Action Model</span></h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://moojink.com/">Moo Jin Kim</a><sup>*,1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://kpertsch.github.io/">Karl Pertsch</a><sup>*,1,2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://www.siddkaramcheti.com/">Siddharth Karamcheti</a><sup>*,1,3</sup>,
+              </span>
+              <br>
+              <span class="author-block">
+                <a href="https://tedxiao.me/">Ted Xiao</a><sup>4</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://abalakrishna123.github.io/">Ashwin Balakrishna</a><sup>3</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://suraj-nair-1.github.io/">Suraj Nair</a><sup>3</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://rmrafailov.github.io/">Rafael Rafailov</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="">Ethan Foster</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="">Grace Lam</a>,
+              </span>
+              <br>
+              <span class="author-block">
+                <a href="https://www.linkedin.com/in/pannag-sanketi-bb91142">Pannag Sanketi</a><sup>4</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://quanvuong.github.io/">Quan Vuong</a><sup>5</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://aicenter.stanford.edu/people/thomas-kollar">Thomas Kollar</a><sup>3</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://www.benburchfiel.com/">Benjamin Burchfiel</a><sup>3</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://groups.csail.mit.edu/locomotion/russt.html">Russ Tedrake</a><sup>3,6</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://dorsa.fyi/">Dorsa Sadigh</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://people.eecs.berkeley.edu/~svlevine/">Sergey Levine</a><sup>2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://cs.stanford.edu/~pliang/">Percy Liang</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://ai.stanford.edu/~cbfinn/">Chelsea Finn</a><sup>1</sup>,
+              </span>
+            </div>
+
+            
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup><font size="-0.4">*</sup>Equal contribution</font></span><br>
+              <span class="author-block"><sup>1</sup>Stanford University,</span>
+              <span class="author-block"><sup>2</sup>UC Berkeley,</span>
+              <span class="author-block"><sup>3</sup>Toyota Research Institute,</span>
+              <span class="author-block"><sup>4</sup>Google DeepMind,</span>
+              <span class="author-block"><sup>5</sup>Physical Intelligence,</span>
+              <span class="author-block"><sup>6</sup>MIT,</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="openvla.pdf"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <!-- Video Link. -->
+                <!-- <span class="link-block">
+                  <a href="https://www.youtube.com/watch?v=SIcPxapIgBI" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                    </span>
+                    <span>Video</span>
+                  </a>
+                </span> -->
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://github.com/openvla/openvla"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <!-- Model Link. -->
+                <span class="link-block">
+                  <a href="https://huggingface.co/openvla"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <img src="static/images/hf_icon.svg" />
+                    </span>
+                    <span>Models</span>
+                  </a>
+                </span>
+                <!-- CoLab Link. -->
+                <!-- <span class="link-block">
+                  <a href="https://colab.research.google.com/github/openvla/openvla/blob/main/examples/openvla.ipynb"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <img src="static/images/colab_icon.png" />
+                    </span>
+                    <span>Let's try it!</span>
+                  </a>
+                </span> -->
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <!-- <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src=""
+                type="video/mp4">
+      </video> -->
+
+        <img src="static/images/openvla_teaser.jpg" />
+
+        <h2 class="subtitle has-text-centered">
+            We introduce OpenVLA, a 7B parameter open-source vision-language-action model (VLA), pretrained on 970k robot episodes from the Open X-Embodiment dataset. 
+            OpenVLA sets a new state of the art for generalist robot manipulation policies. It supports controlling multiple robots out of the box and 
+            can be quickly adapted to new robot setups via parameter-efficient fine-tuning. The OpenVLA checkpoints and PyTorch training pipeline are fully open-source
+            and models can be downloaded and fine-tuned from HuggingFace.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero is-light is-small">
+    <div class="hero-body">
+      <div class="container">
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="item item-steve has-text-centered">
+            <video poster="" id="steve video" autoplay controls muted loop playsinline height="100%">
+              <source src="static/videos/carousel/bridge_pick_clutter_2.mp4" type="video/mp4">
+            </video>
+            <p id="overlay">Bridge Put Corn on Plate</p>
+          </div>
+          <div class="item item-steve has-text-centered">
+            <video poster="" id="steve video" autoplay controls muted loop playsinline height="100%">
+              <source src="static/videos/carousel/rt1_robot_coke_upright.mp4" type="video/mp4">
+            </video>
+            <p id="overlay">Google Place Coke Upright</p>
+          </div>
+          <div class="item item-chair-tp has-text-centered">
+            <video poster="" id="chair-tp video" autoplay controls muted loop playsinline height="100%">
+              <source src="static/videos/carousel/franka_pour_corn.mp4" type="video/mp4">
+            </video>
+            <p id="overlay">Franka Pour Corn in Pot (4x)</p>
+          </div>
+          <div class="item item-chair-tp has-text-centered">
+            <video poster="" id="chair-tp video" autoplay controls muted loop playsinline height="100%">
+              <source src="static/videos/carousel/wipe_ood_4x.mp4" type="video/mp4">
+            </video>
+            <p id="overlay">Franka Wipe Table (4x)</p>
+          </div>
+          <div class="item item-fullbody has-text-centered">
+            <video poster="" id="fullbody video" autoplay controls muted loop playsinline height="100%">
+              <source src="static/videos/carousel/bridge_pick_clutter.mp4" type="video/mp4">
+            </video>
+            <p id="overlay">Bridge Put Eggplant in Bowl</p>
+          </div>
+          <div class="item item-shiba has-text-centered">
+            <video poster="" id="shiba video" autoplay controls muted loop playsinline height="100%">
+              <source src="static/videos/carousel/franka_cover.mp4" type="video/mp4">
+            </video>
+            <p id="overlay">Franka Cover Pink Bowl (4x)</p>
+          </div>
+          <div class="item item-steve has-text-centered">
+            <video poster="" id="steve video" autoplay controls muted loop playsinline height="100%">
+              <source src="static/videos/carousel/rt1_robot_orange_near_coke.mp4" type="video/mp4">
+            </video>
+            <p id="overlay">Google Move Orange near Coke</p>
+          </div>
+          <div class="item item-fullbody has-text-centered">
+            <video poster="" id="fullbody video" autoplay controls muted loop playsinline height="100%">
+              <source src="static/videos/carousel/wipe_ood_2_4x.mp4" type="video/mp4">
+            </video>
+            <p id="overlay">Franka Wipe Table (4x)</p>
+          </div>
+          <div class="item item-fullbody has-text-centered">
+            <video poster="" id="fullbody video" autoplay controls muted loop playsinline height="100%">
+              <source src="static/videos/carousel/bridge_stack.mp4" type="video/mp4">
+            </video>
+            <p id="overlay">Bridge Stack Cups (2x)</p>
+          </div>
+          <div class="item item-fullbody has-text-centered">
+            <video poster="" id="fullbody video" autoplay controls muted loop playsinline height="100%">
+              <source src="static/videos/carousel/franka_flip_pot.mp4" type="video/mp4">
+            </video>
+            <p id="overlay">Franka Flip Pot (4x)</p>
+          </div>
+          <div class="item item-fullbody has-text-centered">
+            <video poster="" id="fullbody video" autoplay controls muted loop playsinline height="100%">
+              <source src="static/videos/carousel/franka_knock.mp4" type="video/mp4">
+            </video>
+            <p id="overlay">Franka Knock over Yellow Pony (2x)</p>
+          </div>
+        </div>
+        <br>
+        <p class="has-text-centered">WidowX & Google robot videos show real <b>"zero-shot"</b> rollouts with the OpenVLA model<br>Franka Panda robot videos depict <b>fine-tuned</b> OpenVLA policies</p>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-3">The OpenVLA Model</h2>
+          <div class="content has-text-justified has-text-centered">
+            <img src="static/images/openvla_model.jpg" />
+            <p>
+              We train OpenVLA by fine-tuning a pretrained <a href="https://arxiv.org/abs/2402.07865">Prismatic-7B VLM</a>. Our model consists of three key elements:
+              (1) a <strong>fused visual encoder</strong>, consisting of a SigLIP and a DinoV2 backbone, that maps image inputs to a number of ``image patch embeddings'', 
+              (2) a <strong>projector</strong> that takes the output embeddings of the visual encoder and maps them into the input space of a large language model, and 
+              (3) a Llama 2 7B <strong>language model backbone</strong> that predicts tokenized output actions. These tokens get decoded into continuous output actions that
+              can be directly executed on the robot.
+            </p>
+            <p>
+              To train OpenVLA, we curate a dataset of 970k robot manipulation trajectories from the <a href="https://robotics-transformer-x.github.io/">Open X-Embodiment (OpenX) dataset</a>.
+              Our dataset spans a wide range of tasks, scenes and robot embodiments. We train OpenVLA on a cluster of 64 A100 GPUs for 15 days. The trained model checkpoints 
+              can be <a href="https://huggingface.co/openvla">downloaded from HuggingFace</a> and used with a few lines of code.
+            </p>
+    
+            <!-- <h3 class="title is-4">Metrics for Real-to-Sim Evaluation</h3>
+            <img src="static/images/metrics.png" />
+            <p>
+              An effective & useful simulation-based evaluation should demonstrate <strong>good correlations in policy ranking & performance</strong> with real evaluations.
+            </p>
+            <p>
+              To measure such correlations, one can apply the traditional <strong>Pearson correlation metric ("r")</strong>, but it has the following limitations: (1) Pearson correlation only assess 
+              the linear fit between real-and-sim performances, while for simulated evaluation we don't necessarily need linear correlations,
+              as long as sim eval reflects real-world performance improvements between different policies (middle-right); (2) Pearson correlation does not reflect the range of values it is computed over.
+              For policy sets that perform closely in real (far-right), Pearson r may change drastically based on small real-world performance differences, 
+              which can often be attributed to the inherent noise in real-world evaluations.
+            </p>
+            <p>             
+              Thus, we introduce the <strong>Mean Maximum Rank Violation (MMRV)</strong> metric (lower the better)
+              to better assess the real-and-sim policy ranking consistency.
+              The key underlying quantity is the rank violation between two policies, which weighs the significance of the
+              simulator incorrectly ranking the policies by the corresponding margin in real-world performance.
+              MMRV then aggregates the N^2 rank violations by averaging the worst-case rank violation for each policy.
+            </p>
+            <h3 class="title is-4">Visual Matching Mitigates the Real-to-Sim Visual Gap</h3>
+            <img src="static/images/visual_matching.png" style="width: 70%; height: auto; display: block; margin: 0 auto;"/>
+            <p>
+              Visual discrepancies between real-world and simulated environments can comprise a distribution shift that adversely
+              affects a learned policy’s behavior, rendering simulated evaluation unreliable. Our goal is to match the simulator
+              visuals to those of the real-world environment with only a modest amount of manual effort. Our proposed Visual Matching
+              consists of (1) <strong>green screening</strong>, i.e. segmenting out interactive simulated assets and overlaying them onto real-world
+              backgrounds; and (2) <strong>texture matching</strong>, which involves projecting real object textures onto simulation assets and tuning
+              robot arm colors using real videos.
+            </p>
+            <h3 class="title is-4">System Identification Mitigates the Real-to-Sim Control Gap</h3>
+            <img src="static/images/control_gap.png" />
+            <p>
+              The goal of mitigating the control gap between simulated and real-world environments is to ensure that policy actions
+              executed in simulation yields comparable effects on the robot’s end-effector as those observed when executed on the real
+              robot. We perform system identification (SysID) for closing the control gap between real and simulated environments on a small sample of trajectories from the real world dataset.
+            </p>
+            <div class="columns is-vcentered interpolation-panel">
+                  <div class="column  has-text-centered">
+                    <video autoplay controls muted loop playsinline height="100%">
+                      <source src="static/videos/sysid/real_rollout.mp4" type="video/mp4">
+                    </video>
+                    <p >Real World Rollout</p>
+                  </div>
+                  <div class="column  has-text-centered">
+                    <video autoplay controls muted loop playsinline height="100%">
+                      <source src="static/videos/sysid/bad_control.mp4" type="video/mp4">
+                    </video>
+                    <p >Control without SysID</p>
+                  </div>
+                  <div class="column  has-text-centered">
+                    <video autoplay controls muted loop playsinline height="100%">
+                      <source src="static/videos/sysid/good_control.mp4" type="video/mp4">
+                    </video>
+                    <p >Control with SysID</p>
+                  </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+      <section class="section">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column is-full-width">
+                <h2 class="title is-3">Experiments</h2>
+
+                <h3 class="title is-4">Direct Evaluations on Multiple Robot Platforms</h3>
+                <img src="static/images/bridge_results.jpg" />
+                <div class="content has-text-justified">
+
+                  <table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <p>
+                        We evaluate OpenVLA's ability to control multiple robot platforms ``out-of-the-box'' across two setups: the WidowX setup 
+                        from Bridge V2 and the Google Robot from the RT-series of papers. Our results show that OpenVLA sets a new state of the art, 
+                        outperforming prior generalist policies RT-1-X and Octo. Notably, as a product of the added data diversity and new model
+                        components, it also outperforms RT-2-X, a 55B parameter closed VLA.
+                      </p>
+                    </tr>
+                    <tr>
+                      <td width="50%">
+                        <p>
+                          We test OpenVLA across a wide range of generalization tasks, such as 
+                          <strong>visual</strong> (unseen backgrounds, distractor objects, colors/appearances of objects); 
+                          <strong>motion</strong> (unseen object positions/orientations); 
+                          <strong>physical</strong> (unseen object sizes/shapes); 
+                          and <strong>semantic</strong> (unseen target objects, instructions, and concepts from the Internet) generalization. 
+                          Qualitatively, we find that both RT-2-X and OpenVLA exhibit markedly more robust behaviors than the other tested model, 
+                          such as approaching the correct object when distractor objects are present, properly orienting the robot's end-effector
+                          to align with the orientation of the target object, and even recovering from mistakes such as insecurely grasping objects
+                        </p>
+                      </td>
+                      <td width="50%">
+                        <img src="static/images/rt1_results.jpg">
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+
+                <br>
+                <h3 class="title is-4">Data-Efficient Adaptation to New Robot Setups</h3>
+                
+                <div class="content has-text-justified">
+                  <img src="static/images/finetune_results.jpg" />
+                  <table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <p>
+                        Effective fine-tuning of VLA models to new tasks and robot setups is largely unexplored, 
+                        yet is key for their widespread adoption. We investigate OpenVLA’s ability to be quickly adapted to a new robot setup
+                        in two domains: Franka-Tabletop, a stationary, table-mounted Franka Emika Panda 7-DoF robot arm, controlled 
+                        at a frequency of 5 Hz; and Franka-DROID, the Franka robot arm setup from the recently released <a href="https://droid-dataset.github.io/">DROID dataset</a>, controlled at 15 Hz. 
+
+                      </p>
+                    </tr>
+                    <tr>
+                      <p>
+                        We compare to Diffusion Policy, a state of the art data-efficient imitation learning approach, trained from scratch.
+                        Additionally, we evaluate Octo fine-tuned on the target dataset. OpenVLA clearly outperforms Octo across most tasks.
+                        Diffusion policy is strongest on narrower, more precise tasks, while OpenVLA shows better performance on tasks that 
+                        require grounding language to behavior in multi-task, multi-object settings.
+                        OpenVLA is the only approach that achieves at least 50% success rate across all tested
+                        tasks, suggesting that it can be a strong default option for imitation learning tasks, particularly if they
+                        involve a diverse set of language instructions.
+                      </p>
+                    </tr>
+                  </table>
+                  
+                </div>
+                
+                <br>
+                <h3 class="title is-4">Parameter-Efficient Fine-Tuning</h3>
+                <div class="content has-text-justified">
+                  <img src="static/images/lora_table.png">
+                  <table width="100%" align="center" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <p>
+                        We test various approaches for parameter-efficient fine-tuning of OpenVLA policies across multiple Franka-Tabletop tasks.
+                        We find that only fine-tuning the network’s last layer or freezing the vision encoder leads to poor performance.
+                        LoRA achieves the best trade-off between performance and training memory consumption, matching
+                        full fine-tuning performance while fine-tuning only 1.4% of the parameters. 
+                      </p>
+                    </tr>
+                  </table>
+                </div>
+
+
+              <br>
+
+              <br>
+              <h3 class="title is-4">Sample OpenVLA Rollout Videos</h2>
+                <div class="content has-text-justified">
+                  <p>
+                    Below are videos of the OpenVLA generalist policy demonstrating various robust behaviors. (Videos are sped up by 1.5x.)
+                  </p>
+                </div>
+                <h4 class="title is-6">Real-World Bridge V2 WidowX Robot Rollouts</h4>
+                <div class="content has-text-justified">
+                  <p>In a scene with many distractor objects, OpenVLA is able to approach and manipulate the correct target object.</p>
+                </div>
+                <div class="columns is-vcentered interpolation-panel">
+                  <div class="column  has-text-centered">
+                    <h5>Put Eggplant into Pot</h5>
+                    <video autoplay controls muted loop playsinline width="49%">
+                      <source src="static/videos/qualitative_results/correct_target/openvla--put_eggplant_into_pot--clutter.mp4" type="video/mp4">
+                    </video>
+                    <video autoplay controls muted loop playsinline width="49%">
+                      <source src="static/videos/qualitative_results/correct_target/openvla--put_eggplant_into_pot--clutter--2.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="column  has-text-centered">
+                    <h5>Put Yellow Corn on Pink Plate</h5>
+                    <video autoplay controls muted loop playsinline width="49%">
+                      <source src="static/videos/qualitative_results/correct_target/openvla--put_corn_on_plate--clutter.mp4" type="video/mp4">
+                    </video>
+                    <video autoplay controls muted loop playsinline width="49%">
+                      <source src="static/videos/qualitative_results/correct_target/openvla--put_corn_on_plate--clutter--2.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+
+                <div class="content has-text-justified">
+                    Similarly, we assess the policy's language grounding by prompting it to manipulate different target objects given the same initial states. We find that OpenVLA reliably targets the correct object in most cases.</p>
+                </div>
+                <div class="columns is-vcentered interpolation-panel">
+                  <div class="column  has-text-centered">
+                    <h5>Lift Red Chili Pepper</h5>
+                    <video autoplay controls muted loop playsinline width="100%">
+                      <source src="static/videos/qualitative_results/good_lang_cond/openvla--lift_red_chili_pepper.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="column  has-text-centered">
+                    <h5>Lift Cheese</h5>
+                    <video autoplay controls muted loop playsinline width="100%">
+                      <source src="static/videos/qualitative_results/good_lang_cond/openvla--lift_cheese.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="column  has-text-centered">
+                    <h5>Put Pink Cup on Plate</h5>
+                    <video autoplay controls muted loop playsinline width="100%">
+                      <source src="static/videos/qualitative_results/good_lang_cond/openvla--put_pink_cup_on_plate.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="column  has-text-centered">
+                    <h5>Put Blue Cup on Plate</h5>
+                    <video autoplay controls muted loop playsinline width="100%">
+                      <source src="static/videos/qualitative_results/good_lang_cond/openvla--put_blue_cup_on_plate.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+
+                <div class="content has-text-justified">
+                  <p>OpenVLA properly orients the robot's end-effector to align with the orientation of the target object before grasping it.</p>
+                </div>
+                <div class="columns is-vcentered interpolation-panel">
+                  <div class="column  has-text-centered">
+                    <h5>Lift AAA Battery</h5>
+                    <video autoplay controls muted loop playsinline width="80%">
+                      <source src="static/videos/qualitative_results/good_orient/openvla--lift_AAA_battery.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="column  has-text-centered">
+                    <h5>Put Carrot on Plate</h5>
+                    <video autoplay controls muted loop playsinline width="80%">
+                      <source src="static/videos/qualitative_results/good_orient/openvla--put_corn_on_plate--motion.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+
+                <div class="content has-text-justified">
+                  <p>In some cases, after an initial mistake, OpenVLA can even recover and successfully complete the task.</p>
+                </div>
+                <div class="columns is-vcentered interpolation-panel">
+                  <div class="column  has-text-centered">
+                    <h5>Put Blue Cup on Plate</h5>
+                    <video autoplay controls muted loop playsinline width="80%">
+                      <source src="static/videos/qualitative_results/reattempt/openvla--put_blue_cup_on_plate--reattempt.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="column  has-text-centered">
+                    <h5>Put Eggplant into Pot</h5>
+                    <video autoplay controls muted loop playsinline width="80%">
+                      <source src="static/videos/qualitative_results/reattempt/openvla--put_eggplant_into_pot--clutter--reattempt.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+                <br><br>
+
+                <h3 class="title is-4">Comparisons with State-of-the-Art Models</h2>
+                  <div class="content has-text-justified">
+                    <p>
+                      Here we show how OpenVLA compares with other baseline methods in various evaluation tasks. (Videos are sped up by 2x.)
+                    </p>
+                  </div>
+
+                <h4 class="title is-6">Real-World Google Robot Rollouts</h4>
+                <div class="content has-text-justified">
+                  <p>Both RT-2-X (closed-source 55B-parameter model) and OpenVLA perform reliably on in-distribution and basic out-of-distribution (OOD) generalization tasks.</p>
+                </div>
+                <div class="columns is-vcentered interpolation-panel">
+                  <div class="column  has-text-centered">
+                    <h5><b>RT-2-X:</b><br>Pick Coke Can<br>(In-Distribution)</h5>
+                    <h5 style="font-size:30px;">✅</h5>
+                    <video autoplay controls muted loop playsinline width="80%">
+                      <source src="static/videos/comparisons_with_baselines/rt1_robot/rt2x--pick_coke_can.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="column  has-text-centered">
+                    <h5><b>OpenVLA:</b><br>Pick Coke Can<br>(In-Distribution)</h5>
+                    <h5 style="font-size:30px;">✅</h5>
+                    <video autoplay controls muted loop playsinline width="80%">
+                      <source src="static/videos/comparisons_with_baselines/rt1_robot/openvla--pick_coke_can.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+                <div class="columns is-vcentered interpolation-panel">
+                  <div class="column  has-text-centered">
+                    <h5><b>RT-2-X:</b><br>Move Banana near Plate<br>(OOD: unseen target object)</h5>
+                    <h5 style="font-size:30px;">✅</h5>
+                    <video autoplay controls muted loop playsinline width="80%">
+                      <source src="static/videos/comparisons_with_baselines/rt1_robot/rt2x--move_banana_near_plate.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="column  has-text-centered">
+                    <h5><b>OpenVLA:</b><br>Move Banana near Plate<br>(OOD: unseen target object)</h5>
+                    <h5 style="font-size:30px;">✅</h5>
+                    <video autoplay controls muted loop playsinline width="80%">
+                      <source src="static/videos/comparisons_with_baselines/rt1_robot/openvla--move_banana_near_plate.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+                <div class="columns is-vcentered interpolation-panel">
+                  <div class="column  has-text-centered">
+                    <h5><b>RT-2-X:</b><br>Place Banana on Plate<br>(OOD: unseen target object & instruction)</h5>
+                    <h5 style="font-size:30px;">✅</h5>
+                    <video autoplay controls muted loop playsinline width="80%">
+                      <source src="static/videos/comparisons_with_baselines/rt1_robot/rt2x--place_banana_on_plate.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="column  has-text-centered">
+                    <h5><b>OpenVLA:</b><br>Place Banana on Plate<br>(OOD: unseen target object & instruction)<br></h5>
+                    <h5 style="font-size:30px;">✅</h5>
+                    <video autoplay controls muted loop playsinline width="80%">
+                      <source src="static/videos/comparisons_with_baselines/rt1_robot/openvla--place_banana_on_plate.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+                <br>
+
+                <div class="content has-text-justified">
+                  <p>However, RT-2-X performs better than OpenVLA on difficult semantic generalization tasks, i.e., tasks that require knowledge of concepts from the Internet that do not appear in the robot action training data, such as Taylor Swift in the videos below.<br><br>This is expected given that RT-2-X uses larger-scale Internet pretraining data and is co-fine-tuned with both robot action data and Internet pretraining data to better preserve the pretraining knowledge (for OpenVLA, we fine-tune the pretrained vision-language model solely on robot action data for simplicity).</p>
+                </div>
+                <div class="columns is-vcentered interpolation-panel">
+                  <div class="column  has-text-centered">
+                    <h5><b>RT-2-X:</b><br>Move Coke Can near Taylor Swift<br>(OOD: unseen concept from Internet)</h5>
+                    <h5 style="font-size:30px;">✅</h5>
+                    <video autoplay controls muted loop playsinline width="80%">
+                      <source src="static/videos/comparisons_with_baselines/rt1_robot/rt2x--move_coke_can_near_taylor_swift.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="column  has-text-centered">
+                    <h5><b>OpenVLA:</b><br>Move Coke Can near Taylor Swift<br>(OOD: unseen concept from Internet)</h5>
+                    <h5 style="font-size:30px;">❌</h5>
+                    <video autoplay controls muted loop playsinline width="80%">
+                      <source src="static/videos/comparisons_with_baselines/rt1_robot/openvla--move_coke_can_near_taylor_swift.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+                <br><br>
+
+
+                <h4 class="title is-6">Real-World Franka Emika Panda Robot Rollouts: Fine-Tuning on Franka-Tabletop Datasets</h4>
+                <div class="content has-text-justified">
+                  <p>In narrow single-instruction fine-tuning tasks, Diffusion Policy trained from scratch outperforms fine-tuned generalist policies, Octo and OpenVLA. (Videos are sped up by 5x.)</p>
+                </div>
+                <div class="columns is-vcentered interpolation-panel">
+                  <div class="column  has-text-centered">
+                    <h5><b>Diffusion Policy:</b><br>Put Carrot in Bowl</h5>
+                    <h5 style="font-size:30px;">✅</h5>
+                    <video autoplay controls muted loop playsinline width="80%">
+                      <source src="static/videos/comparisons_with_baselines/franka_tabletop/dp--put_carrot.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="column  has-text-centered">
+                    <h5><b>Octo:</b><br>Put Carrot in Bowl</h5>
+                    <h5 style="font-size:30px;">❌</h5>
+                    <video autoplay controls muted loop playsinline width="80%">
+                      <source src="static/videos/comparisons_with_baselines/franka_tabletop/octo--put_carrot.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="column  has-text-centered">
+                    <h5><b>OpenVLA:</b><br>Put Carrot in Bowl</h5>
+                    <h5 style="font-size:30px;">❌</h5>
+                    <video autoplay controls muted loop playsinline width="80%">
+                      <source src="static/videos/comparisons_with_baselines/franka_tabletop/openvla--put_carrot.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+                <div class="columns is-vcentered interpolation-panel">
+                  <div class="column  has-text-centered">
+                    <h5><b>Diffusion Policy:</b><br>Pour Corn into Pot</h5>
+                    <h5 style="font-size:30px;">✅</h5>
+                    <video autoplay controls muted loop playsinline width="80%">
+                      <source src="static/videos/comparisons_with_baselines/franka_tabletop/dp--pour_corn.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="column  has-text-centered">
+                    <h5><b>Octo:</b><br>Pour Corn into Pot</h5>
+                    <h5 style="font-size:30px;">❌</h5>
+                    <video autoplay controls muted loop playsinline width="80%">
+                      <source src="static/videos/comparisons_with_baselines/franka_tabletop/octo--pour_corn.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="column  has-text-centered">
+                    <h5><b>OpenVLA:</b><br>Pour Corn into Pot</h5>
+                    <h5 style="font-size:30px;">❌</h5>
+                    <video autoplay controls muted loop playsinline width="80%">
+                      <source src="static/videos/comparisons_with_baselines/franka_tabletop/openvla--pour_corn.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+                <br>
+
+                <div class="content has-text-justified">
+                  <p>However, in fine-tuning tasks that involve multiple objects in the scene and require language conditioning, Octo and OpenVLA generally perform better, as their OpenX pretraining enables them to better adapt to these more diverse tasks.</p>
+                </div>
+                <div class="columns is-vcentered interpolation-panel">
+                  <div class="column  has-text-centered">
+                    <h5><b>Diffusion Policy:</b><br>Move Yellow Corn onto Plate</h5>
+                    <h5 style="font-size:30px;">❌</h5>
+                    <video autoplay controls muted loop playsinline width="80%">
+                      <source src="static/videos/comparisons_with_baselines/franka_tabletop/dp--move_corn_onto_plate.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="column  has-text-centered">
+                    <h5><b>Octo:</b><br>Move Yellow Corn onto Plate</h5>
+                    <h5 style="font-size:30px;">⚠️</h5>
+                    <video autoplay controls muted loop playsinline width="80%">
+                      <source src="static/videos/comparisons_with_baselines/franka_tabletop/octo--move_corn_onto_plate.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="column  has-text-centered">
+                    <h5><b>OpenVLA:</b><br>Move Yellow Corn onto Plate</h5>
+                    <h5 style="font-size:30px;">✅</h5>
+                    <video autoplay controls muted loop playsinline width="80%">
+                      <source src="static/videos/comparisons_with_baselines/franka_tabletop/openvla--move_corn_onto_plate.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+                <div class="columns is-vcentered interpolation-panel">
+                  <div class="column  has-text-centered">
+                    <h5><b>Diffusion Policy:</b><br>Knock Brown Bear Over</h5>
+                    <h5 style="font-size:30px;">❌</h5>
+                    <video autoplay controls muted loop playsinline width="80%">
+                      <source src="static/videos/comparisons_with_baselines/franka_tabletop/dp--knock_brown_bear_over.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="column  has-text-centered">
+                    <h5><b>Octo:</b><br>Knock Brown Bear Over</h5>
+                    <h5 style="font-size:30px;">⚠️</h5>
+                    <video autoplay controls muted loop playsinline width="80%">
+                      <source src="static/videos/comparisons_with_baselines/franka_tabletop/octo--knock_brown_bear_over.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="column  has-text-centered">
+                    <h5><b>OpenVLA:</b><br>Knock Brown Bear Over</h5>
+                    <h5 style="font-size:30px;">✅</h5>
+                    <video autoplay controls muted loop playsinline width="80%">
+                      <source src="static/videos/comparisons_with_baselines/franka_tabletop/openvla--knock_brown_bear_over.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+                <div class="columns is-vcentered interpolation-panel">
+                  <div class="column  has-text-centered">
+                    <h5><b>Diffusion Policy:</b><br>Cover White Bowl with Towel</h5>
+                    <h5 style="font-size:30px;">❌</h5>
+                    <video autoplay controls muted loop playsinline width="80%">
+                      <source src="static/videos/comparisons_with_baselines/franka_tabletop/dp--cover_white_bowl_with_towel.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="column  has-text-centered">
+                    <h5><b>Octo:</b><br>Cover White Bowl with Towel</h5>
+                    <h5 style="font-size:30px;">✅</h5>
+                    <video autoplay controls muted loop playsinline width="80%">
+                      <source src="static/videos/comparisons_with_baselines/franka_tabletop/octo--cover_white_bowl_with_towel.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="column  has-text-centered">
+                    <h5><b>OpenVLA:</b><br>Cover White Bowl with Towel</h5>
+                    <h5 style="font-size:30px;">⚠️</h5>
+                    <video autoplay controls muted loop playsinline width="80%">
+                      <source src="static/videos/comparisons_with_baselines/franka_tabletop/openvla--cover_white_bowl_with_towel.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+                <br>
+
+                <div class="content has-text-justified">
+                  <p>We see evidence of the benefits of OpenX pretraining when comparing OpenVLA to OpenVLA (Scratch), which ablates OpenX pretraining and directly fine-tunes the base vision-language model on the Franka-Tabletop dataset. The full OpenVLA model exhibits much more reliable behaviors than OpenVLA (Scratch).</p>
+                </div>
+                <div class="columns is-vcentered interpolation-panel">
+                  <div class="column  has-text-centered">
+                    <h5><b>OpenVLA (Scratch):</b><br>Flip Pot Upright</h5>
+                    <h5 style="font-size:30px;">⚠️</h5>
+                    <video autoplay controls muted loop playsinline width="80%">
+                      <source src="static/videos/comparisons_with_baselines/franka_tabletop/base_vlm--flip_pot_upright.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="column  has-text-centered">
+                    <h5><b>OpenVLA:</b><br>Flip Pot Upright</h5>
+                    <h5 style="font-size:30px;">✅</h5>
+                    <video autoplay controls muted loop playsinline width="80%">
+                      <source src="static/videos/comparisons_with_baselines/franka_tabletop/openvla--flip_pot_upright.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+                <div class="columns is-vcentered interpolation-panel">
+                  <div class="column  has-text-centered">
+                    <h5><b>OpenVLA (Scratch):</b><br>Move White Salt Shaker onto Plate</h5>
+                    <h5 style="font-size:30px;">❌</h5>
+                    <video autoplay controls muted loop playsinline width="80%">
+                      <source src="static/videos/comparisons_with_baselines/franka_tabletop/base_vlm--move_salt_shaker_onto_plate.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                  <div class="column  has-text-centered">
+                    <h5><b>OpenVLA:</b><br>Move White Salt Shaker onto Plate</h5>
+                    <h5 style="font-size:30px;">✅</h5>
+                    <video autoplay controls muted loop playsinline width="80%">
+                      <source src="static/videos/comparisons_with_baselines/franka_tabletop/openvla--move_salt_shaker_onto_plate.mp4" type="video/mp4">
+                    </video>
+                  </div>
+                </div>
+            </div>
+          </div>
+      </section>
+
+
+      <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+          <h2 class="title">BibTeX</h2>
+          <pre><code>@article{kim24openvla,
+    title={OpenVLA: An Open-Source Vision-Language-Action Model},
+    author={{Moo Jin} Kim and Karl Pertsch and Siddharth Karamcheti and Ted Xiao and Ashwin Balakrishna and Suraj Nair and Rafael Rafailov and Ethan Foster and Grace Lam and Pannag Sanketi and Quan Vuong and Thomas Kollar and Benjamin Burchfiel and Russ Tedrake and Dorsa Sadigh and Sergey Levine and Percy Liang and Chelsea Finn},
+    journal = {arXiv preprint},
+    year={2024},
+} </code></pre>
+        </div>
+      </section>
+
+
+      <footer class="footer">
+        <div class="container">
+          <!-- <div class="content has-text-centered">
+            <a class="icon-link" href="https://arxiv.org/pdf/2210.05714.pdf">
+              <i class="fas fa-file-pdf"></i>
+            </a>
+            <a class="icon-link" href="" class="external-link" disabled>
+              <i class="fab fa-github"></i>
+            </a>
+          </div> -->
+          <div class="columns is-centered">
+            <div class="column is-8">
+              <div class="content">
+                <p> Website borrowed from <a href="https://github.com/nerfies/nerfies.github.io">NeRFies</a> under a <a
+                    href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0
+                    International</a>
+                </p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+</body>
+
+</html>
