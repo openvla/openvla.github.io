@@ -1,1 +1,1 @@
-# openvla.github.io
+# OpenVLA Project Page
